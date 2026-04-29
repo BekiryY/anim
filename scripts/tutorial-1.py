@@ -46,5 +46,5 @@ class MemoryFill(Scene):
 
 if __name__ == "__main__":
     my_scene = MemoryFill()  # Instantiate the object
-    my_scene.construct()     # Call the method
+    # my_scene.construct()     # Call the method
     my_scene.render()
