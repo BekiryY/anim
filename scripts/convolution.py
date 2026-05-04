@@ -2,11 +2,11 @@ from manim import *
 
 config.quality = "low_quality"
 config.preview = True
-config.frame_rate = 30
+config.frame_rate = 10
 
-CELL_SIZE = 0.5
-GRID_ROWS = 10
-GRID_COLS = 10
+CELL_SIZE = 0.4
+GRID_ROWS = 8
+GRID_COLS = 8
 KERNEL_SIZE = 3
 
 class Convolution(Scene):
@@ -39,6 +39,10 @@ class Convolution(Scene):
                     fill_color=YELLOW,
                     fill_opacity=0.35,
                 )
+                if (r==c or r + c == KERNEL_SIZE - 1):
+                    sq.fill_color = RED
+                else:
+                    sq.fill_color = YELLOW
                 sq.move_to([c * cell, -r * cell, 0])
                 kernel.add(sq)
 
@@ -60,7 +64,7 @@ class Convolution(Scene):
         steps_c = GRID_COLS - KERNEL_SIZE  # 7 steps horizontally
         steps_r = GRID_ROWS - KERNEL_SIZE  # 7 steps vertically
 
-        run_time_per_step = 0.18
+        run_time_per_step = 0.1
 
         for row in range(steps_r + 1):
             for col in range(steps_c + 1):
@@ -89,6 +93,7 @@ class Convolution(Scene):
 
 
 if __name__ == "__main__":
+    # with tempconfig({"renderer": "opengl", "preview": True}):
     my_scene = Convolution()  # Instantiate the object
     # my_scene.construct()     # Call the method
     my_scene.render()
