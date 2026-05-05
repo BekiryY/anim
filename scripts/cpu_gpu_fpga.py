@@ -1,7 +1,7 @@
 from manim import *
 
-config.pixel_height = 960
-config.pixel_width = 1440
+config.pixel_height = 720
+config.pixel_width = 960
 config.frame_rate = 50
 config.preview = True
 
@@ -11,7 +11,7 @@ class HardwareConvolution(Scene):
         def create_arch(title_text, core_text, color):
             grid = VGroup(*[Square(side_length=0.2, stroke_color=color, stroke_width=1, fill_opacity=0.1) for _ in range(384)])
             grid.arrange_in_grid(rows=24, cols=16, buff=0)
-            title = Text(title_text, font_size=24).next_to(grid, UP, buff=0.15)
+            title = Text(title_text, font_size=20).next_to(grid, UP, buff=0.15)
             subtitle = Text(core_text, font_size=14, color=color).next_to(title, UP, buff=0.05)
             return VGroup(subtitle, title, grid), grid
 
@@ -19,7 +19,7 @@ class HardwareConvolution(Scene):
         gpu_ui, gpu_grid = create_arch("GPU (Batches)", "64×16 cores", GREEN_E)
         fpga_ui, fpga_grid = create_arch("FPGA (Spatial)", "6×4×8 DSP slices", ORANGE)
 
-        VGroup(cpu_ui, gpu_ui, fpga_ui).arrange(RIGHT, buff=0.8)
+        VGroup(cpu_ui, gpu_ui, fpga_ui).arrange(RIGHT, buff=0.4)
 
         main_title = Text("Average Convolution Performance Comparison", font_size=32, weight=BOLD)
         main_title.to_edge(UP, buff=0.3)
